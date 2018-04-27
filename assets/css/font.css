@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+/* untitled-font-8 */
+@font-face {
+  font-family: "epus-font";
+  src:url("../fonts/epus-font.eot");
+  src:url("../fonts/epus-font.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/epus-font.woff") format("woff"),
+    url("../fonts/epus-font.ttf") format("truetype"),
+    url("../fonts/epus-font.svg#epus-font") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "epus-font" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "epus-font" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bpjs:before {
+  content: "\61";
+}
+.icon-kpldh:before {
+  content: "\62";
+}
+.icon-eclinic:before {
+  content: "\63";
+}
+.icon-puskesmas:before {
+  content: "\65";
+}
+.icon-telkom:before {
+  content: "\66";
+}
+.icon-pustu:before {
+  content: "\67";
+}
+.icon-posyandu:before {
+  content: "\68";
+}
+.icon-rs:before {
+  content: "\69";
+}
+.icon-laporan:before {
+  content: "\6a";
+}
+.icon-chat:before {
+  content: "\6c";
+}
+.icon-responsive:before {
+  content: "\6d";
+}
+.icon-client:before {
+  content: "\6e";
+}
+.icon-cloud-computing:before {
+  content: "\6f";
+}
+.icon-codeception:before {
+  content: "\70";
+}
+.icon-refresh:before {
+  content: "\71";
+}
+.icon-pasien-baru:before {
+  content: "\72";
+}
+.icon-epuskesmas-ng:before {
+  content: "\74";
+}
+.icon-lb1:before {
+  content: "\6b";
+}
+.icon-secure:before {
+  content: "\73";
+}
+.icon-infokes:before {
+  content: "\64";
+}
+.icon-kemenkes:before {
+  content: "\75";
+}
+.icon-admedika:before {
+  content: "\76";
+}
+.icon-sigma:before {
+  content: "\77";
+}
+.icon-mobile:before {
+  content: "\78";
+}
+.icon-loket:before {
+  content: "\79";
+}
+.icon-poli-umum:before {
+  content: "\7a";
+}
+.icon-apotek:before {
+  content: "\41";
+}
+.icon-poli-kia:before {
+  content: "\42";
+}
+.icon-poli-gigi:before {
+  content: "\43";
+}
+.icon-poli-24:before {
+  content: "\44";
+}
+.icon-medrec:before {
+  content: "\45";
+}
+.icon-poli-ranap:before {
+  content: "\46";
+}
+.icon-poli-tb:before {
+  content: "\47";
+}
+.icon-labor:before {
+  content: "\48";
+}
+.icon-poli-gizi:before {
+  content: "\49";
+}
+.icon-poli-mtbs:before {
+  content: "\4a";
+}
+.icon-poli-fisio:before {
+  content: "\4b";
+}
+.icon-poli-usila:before {
+  content: "\4c";
+}
+.icon-poli-ims:before {
+  content: "\4d";
+}
+.icon-poli-jiwa:before {
+  content: "\4e";
+}
+.icon-poli-ptm:before {
+  content: "\4f";
+}
+.icon-poli-mata:before {
+  content: "\50";
+}
+.icon-gd-obat:before {
+  content: "\51";
+}
+.icon-rujukan:before {
+  content: "\52";
+}
