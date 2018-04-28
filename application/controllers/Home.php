@@ -148,7 +148,7 @@ class Home extends CI_Controller {
 	}
 
 	function _set_rules() {
-        $this->form_validation->set_rules('no_telp', 'No Telpn/Hp', 'required|trim');
+        $this->form_validation->set_rules('no_telp', 'No Telpn/Hp', 'required|trim|numeric');
         $this->form_validation->set_rules('tgl_periksa', 'Tanggal Registrasi', 'required|trim');
         $this->form_validation->set_rules('poliklinik', 'Poliklinik', 'required|trim');
         $this->form_validation->set_rules('dokter', 'Dokter Poliklinik', 'required|trim');
