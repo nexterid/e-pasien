@@ -7,7 +7,7 @@ class Rest_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->API="http://api.rsudkraton.com";
+        $this->API="http://192.168.0.229";
     }
 
     public function sendpasien($data)
