@@ -68,16 +68,11 @@
         </div>
     </div>  
 </body>    
-<script src="<?php echo base_url(); ?>assets/js/jquery-3.2.1.min.js"></script>        
+<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.4.min.js"></script>        
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/viewport-bug-workaround.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.min.js"></script>      
 <script src="<?php echo base_url(); ?>assets/js/tilt.jquery.min.js"></script>    
-<script >
-$('.js-tilt').tilt({
-    scale: 1.1
-})
-</script>
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 <script type="text/javascript"> 
 function alert(message, type='danger')
