@@ -43,10 +43,11 @@ class Auth extends CI_Controller {
 					'jenis_kel'=>$jeniskel,
 					'tgl_lahir'=>tgl_lengkap($cek->hasil->tgl_lahir),
 					'tempat_lahir'=>$cek->hasil->tempat_lahir,
+					'no_telp'=>$cek->hasil->no_telp,
 					'status_login'=>TRUE
 				);
 				$this->session->set_userdata($session);	
-				redirect('home');
+				redirect('home');				
 			}else{				
 				$this->session->set_flashdata('error',$cek->pesan);
 				$this->index();
@@ -57,7 +58,7 @@ class Auth extends CI_Controller {
 	
 	function logout() {
         $this->session->sess_destroy();
-        redirect(base_url());
+        redirect(site_url());
 	}
 	
 	function _set_rules() {

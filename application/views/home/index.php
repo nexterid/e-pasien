@@ -95,7 +95,7 @@
 								<?php echo form_open('simpan','class="form"');?>
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-										<input type="text" name="no_telp" id="no_telp" class="input-register" placeholder="No. Handphone" required oninvalid="setCustomValidity('No Telpone Harus di Isi !')" oninput="setCustomValidity('')">										
+										<input type="text" name="no_telp" id="no_telp" value="<?php echo $this->session->userdata('no_telp'); ?>"class="input-register" placeholder="No. Handphone" required oninvalid="setCustomValidity('No Telpone Harus di Isi !')" oninput="setCustomValidity('')">										
 										<?php echo form_error('no_telp'); ?>
 									</div>
 									<div class="input-group-icon mt-10">
