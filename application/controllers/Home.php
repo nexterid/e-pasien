@@ -129,7 +129,8 @@ class Home extends CI_Controller {
 			$penjaminlain= $this->rest_model->getPenjaminLain();
 			echo ' <div class="form-select">
 			<div class="icon"><i class="fa fa-tags" aria-hidden="true"></i></div>
-			<select name="kd_penjamin" class="input-register" id="penjaminlain" >';				
+			<select name="kd_penjamin" class="input-register" requered id="penjaminlain" >';	
+				echo '<option value="">- Pilih Penjamin -</option>';			
 				foreach($penjaminlain->hasil as $q){
 					echo'<option value="'.$q->kd_penjamin.'">'.$q->nama_penjamin.'</option>';
 				}				
