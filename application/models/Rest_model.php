@@ -94,4 +94,22 @@ class Rest_model extends CI_Model {
         return $result;
     }
 
+    public function getHariLibur($tgl_periksa)
+    {
+        $result=json_decode($this->curl->simple_get($this->API.'/getharilibur/'.$tgl_periksa));
+        return $result;
+    }
+
+    public function getTarifKarcis($kd_poli)
+    {
+        $result=json_decode($this->curl->simple_get($this->API.'/gettarifkarcis/'.$kd_poli));
+        return $result;
+    }
+
+    public function NoBukti($kode_tag)
+    {
+        $result=json_decode($this->curl->simple_get($this->API.'/getnotagihan/'.$kode_tag));
+        return $result;
+    }
+
 }

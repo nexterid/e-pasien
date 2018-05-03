@@ -122,9 +122,11 @@
 											';
 										}                
 									?>                
-								</table>     
+								</table> 
+								<a href="<?= site_url('home');?>" class="genric-btn btn-xs success circle">Back to home</a>    
 		
 							</div>
+							
 						</div>
 					</div>					
 			</div>

@@ -31,10 +31,10 @@ class Home extends CI_Controller {
 		$cek_libur=$this->rest_model->getHariLibur($tgl_periksa); 	
 		if($this->form_validation->run()==false){
 			$this->index();
-		}else if($cek_libur->ok==true){			
-			$pesan="Maaf Poli Tutup ".$cek_libur->hasil->keterangan;
-			$this->session->set_flashdata('error',$pesan);
-			redirect('registered');
+		// }else if($cek_libur->ok==true){			
+		// 	$pesan="Maaf Poli Tutup ".$cek_libur->hasil->keterangan;
+		// 	$this->session->set_flashdata('error',$pesan);
+		// 	redirect('registered');
 		}else {			
 			$kode='01'.date('dmy',strtotime($this->input->post('tgl_periksa',true)));
 			$kode_tag='IRJ'.date('dmy',strtotime($this->input->post('tgl_periksa',true)));
@@ -61,36 +61,37 @@ class Home extends CI_Controller {
 			}
 			$data=array(
 				'no_reg'=>$newID,
-				'kd_sub_unit'=>$this->input->post('poliklinik',true),
+				'no_bukti'=>$no_bukti,
 				'no_RM'=>$this->input->post('no_rm',true),
+				'no_telp'=>$this->input->post('no_telp',true),
 				'tgl_reg'=>tgl_db($this->input->post('tgl_periksa',true)),
 				'waktu'=>date('H:i:s'),
-				'user_id'=>'000003',
-				'kd_pegawai'=>$this->input->post('dokter',true),
-				'no_telp'=>$this->input->post('no_telp',true),
+				'kd_asal_pasien'=>'1',			
 				'kd_cara_bayar'=>$this->input->post('cara_bayar',true),
-				'kd_asal_pasien'=>'1',
-				'kd_tarif'=>$get_tarif->hasil->kd_tarif,
-				'no_bukti'=>$no_bukti,
-				'hak_kelas'=>'0',
-				'Rek_P'=>$get_tarif->hasil->Rek_P,
+				'kd_sub_unit'=>$this->input->post('poliklinik',true),
+				'kd_tarif'=>$get_tarif->hasil->kd_tarif,	
+				'Rek_P'=>$get_tarif->hasil->Rek_P,	
+				'hak_kelas'=>'5',	
+				'kd_pegawai'=>$this->input->post('dokter',true),
+				'user_id'=>'000003'		
 			);			
 			if($this->input->post('cara_bayar')==3){
 				$data['kd_penjamin']=$this->input->post('kd_penjamin',true);
 			}					
 			$insert=$this->rest_model->action_daftar($data); 	
-			$respon=json_decode($insert);			
-			if($respon->ok==true){
-				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));
-				$pesan=$respon->pesan.'<br> No. Antrian anda : <strong>'.$respon->no_antrian.'</strong><br>Nama Poli : '.$getPoli->hasil->nama_sub_unit;
-				$this->session->set_flashdata('success',$pesan);	
-				$this->session->set_userdata('no_telp',$this->input->post('no_telp',true));				
-				redirect('registered');				
-			}else {	
+			$respon=json_decode($insert);
+			//var_dump($respon);		
+			if($respon->ok==false){
 				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));
 				$pesan=$respon->pesan.' untuk tanggal '.$this->input->post('tgl_periksa',true).'<br>Nama Poli : '.$getPoli->hasil->nama_sub_unit;
 				$this->session->set_flashdata('error',$pesan);
 				redirect('registered');	
+			}else {	
+				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));
+				$pesan=$respon->pesan.'<br> No. Antrian anda : <strong>'.$respon->no_antrian.'</strong><br>Nama Poli : '.$getPoli->hasil->nama_sub_unit;
+				$this->session->set_flashdata('success',$pesan);	
+				$this->session->set_userdata('no_telp',$this->input->post('no_telp',true));				
+				redirect('registered');		
 			}			
 		}
 
