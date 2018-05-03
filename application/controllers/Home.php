@@ -82,13 +82,13 @@ class Home extends CI_Controller {
 			$respon=json_decode($insert);			
 			if($respon->ok==true){
 				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));
-				$pesan=$respon->pesan.'<br> No. Antrian anda : <strong>'.$respon->no_antrian.'</strong><br>Nama Poli : '.$getPoli->hasil->nama_sub_unit;
+				$pesan=$respon->pesan.'<br> No. Antrian anda : <strong>'.$respon->no_antrian.'</strong><br>Pendaftaran Poli : '.$getPoli->hasil->nama_sub_unit;
 				$this->session->set_flashdata('success',$pesan);	
 				$this->session->set_userdata('no_telp',$this->input->post('no_telp',true));				
 				redirect('registered');				
 			}else {	
-				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));
-				$pesan=$respon->pesan.' untuk tanggal '.$this->input->post('tgl_periksa',true).'<br>Nama Poli : '.$getPoli->hasil->nama_sub_unit;
+				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));				
+				$pesan=$respon->pesan.' untuk tanggal '.$this->input->post('tgl_periksa',true).'<br>Pendaftaran Poli : '.$getPoli->hasil->nama_sub_unit;
 				$this->session->set_flashdata('error',$pesan);
 				redirect('registered');	
 			}			
