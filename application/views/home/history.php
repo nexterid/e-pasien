@@ -111,15 +111,20 @@
 										<td style="width:200px">Poliklinik</td>
 									</tr>                
 									<?php 
-										foreach($lisregister->hasil as $q){
-											echo'
-											<tr>
-												<td>'.$q->no_reg.'</td>
-												<td>'.tgl_lengkap($q->tgl_reg).'</td>
-												<td>'.waktu_24($q->waktu).'</td>
-												<td>'.$q->nama_sub_unit.'</td>                            
-											</tr>
-											';
+										if($lisregister->ok==false){
+											echo '
+											<tr>												
+											</tr>';
+										}else{
+											foreach($lisregister->hasil as $q){
+												echo'
+												<tr>
+													<td>'.$q->no_reg.'</td>
+													<td>'.tgl_lengkap($q->tgl_reg).'</td>
+													<td>'.waktu_24($q->waktu).'</td>
+													<td>'.$q->nama_sub_unit.'</td>                            
+												</tr>';
+											}										
 										}                
 									?>                
 								</table> 

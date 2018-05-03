@@ -84,7 +84,8 @@ class Home extends CI_Controller {
 				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));
 				$pesan=$respon->pesan.'<br> No. Antrian anda : <strong>'.$respon->no_antrian.'</strong><br>Pendaftaran Poli : '.$getPoli->hasil->nama_sub_unit;
 				$this->session->set_flashdata('success',$pesan);	
-				$this->session->set_userdata('no_telp',$this->input->post('no_telp',true));				
+				$this->session->set_userdata('no_telp',$this->input->post('no_telp',true));	
+				//$this->db->insert('tb_registrasi',$data);		
 				redirect('registered');				
 			}else {	
 				$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));				
