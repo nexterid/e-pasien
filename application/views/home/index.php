@@ -100,7 +100,7 @@
 									</div>
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-										<input type="text" name="tgl_periksa" class="input-register" id="datepicker" placeholder="Tanggal Periksa" onchange='getHarga()'>
+										<input type="text" name="tgl_periksa" class="input-register" id="tgl_periksa" readonly placeholder="Tanggal Periksa" value="<?= date('d-m-Y',$tanggal);?>">
 										<?php echo form_error('tgl_periksa'); ?>
 									</div>
 									<div class="input-group-icon mt-10">
@@ -247,7 +247,7 @@
     }
     function getDokter(){
         var poli = $("#poliklinik").val();
-        var tgl_reg = $("#datepicker").val();
+        var tgl_reg = $("#tgl_periksa").val();
         $.ajax({
             type: "get",
             url: "<?php echo base_url('home/getDokter') ?>",
