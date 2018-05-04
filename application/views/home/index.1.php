@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id" class="no-js">
+
 <head>
+
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->	
@@ -92,15 +94,15 @@
 						<div class="row">
 							<div class="col-md-6">
 								<h3 class="mb-30">Registrasi</h3>
-								<?php echo form_open('simpan','class="form"');?>
+								<?php echo form_open('simpan','class="form" id="registerForm"');?>
 									<div class="input-group-icon mt-10">
-										<div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-										<input type="text" name="no_telp" id="no_telp" value="<?php echo $this->session->userdata('no_telp'); ?>"class="input-register" placeholder="No. Handphone" required oninvalid="setCustomValidity('No Telpone Harus di Isi !')" oninput="setCustomValidity('')">										
+										<div class="icon"><i class="fa fa-phone"></i></div>
+										<input type="text" name="no_telp" id="no_telp" value="<?php echo $this->session->userdata('no_telp'); ?>"class="input-register">										
 										<?php echo form_error('no_telp'); ?>
 									</div>
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-										<input type="text" name="tgl_periksa" class="input-register" id="datepicker" placeholder="Tanggal Periksa" onchange='getHarga()'>
+										<input type="text" name="tgl_periksa" class="input-register" id="tgl_periksa" value=''>
 										<?php echo form_error('tgl_periksa'); ?>
 									</div>
 									<div class="input-group-icon mt-10">
@@ -158,12 +160,13 @@
 			
 		</div>
 	</div>
-<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.4.min.js"></script> 		
+<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.4.min.js"></script> 	
+<script src="<?php echo base_url(); ?>assets/js/jquery.validate.js"></script>	
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.ajaxchimp.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.magnific-popup.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.validate.js"></script>	
+
 <script src="<?php echo base_url(); ?>assets/lib/datepicker/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/lib/datepicker/locales/bootstrap-datepicker.id.js"></script>
 </body>
@@ -183,11 +186,7 @@
 					maxlength: 13,
 					number: true
 				},					
-				datepicker: "required",
-				poliklinik:	"required",
-				tarif:	"required",
-				dokter:	"required",
-				cara_bayar: "required"
+				tgl_periksa: "required"
 			},
 			messages: {					
 				no_telp: {
@@ -195,11 +194,7 @@
 					number: "Format Input Number",
 					minlength: "Minimal number 11 angka"
 				},					
-				datepicker: "Tanggal Periksa belum di isi",
-				poliklinik: "Poliklinik belum di isi",
-				tarif: "Tarif Poli belum di isi",
-				dokter: "Dokter Poli belum di isi",
-				cara_bayar: "Jenis Pasien belum di isi",
+				tgl_periksa: "Tanggal Periksa belum di isi"
 			},
 			errorElement: "em",
 			errorPlacement: function ( error, element ) {					
@@ -273,6 +268,6 @@
                 $("#penjaminlain").html(data);                 
             }
         });
-    }
+	}
     
 </script>
