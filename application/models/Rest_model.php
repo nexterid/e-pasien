@@ -112,4 +112,16 @@ class Rest_model extends CI_Model {
         return $result;
     }
 
+    public function getAllHariLibur()
+    {
+        $result=json_decode($this->curl->simple_get($this->API.'/getallharilibur'),true);
+        return $result;
+    }
+
+    public function getJadwalDokter($tgl_periksa)
+    {
+        $result=json_decode($this->curl->simple_get($this->API.'/getjadwaldokter/'.$tgl_periksa));
+        return $result;
+    }
+
 }

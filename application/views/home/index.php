@@ -19,6 +19,8 @@
 	<link href="<?php echo base_url(); ?>assets/css/main.css" type="text/css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/lib/datepicker/datepicker3.css" >
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/lib/datepicker/bootstrap-datetimepicker.min.css" >
+	<!-- DATA TABLES -->
+	<link href="<?php echo base_url(); ?>assets/lib/datatables/dataTables.bootstrap.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="main-wrapper-first">
@@ -100,7 +102,7 @@
 									</div>
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-										<input type="text" name="tgl_periksa" class="input-register" id="tgl_periksa" readonly placeholder="Tanggal Periksa" value="<?= date('d-m-Y',$tanggal);?>">
+										<input type="text" name="tgl_periksa" class="input-register" id="tgl_periksa" readonly placeholder="Tanggal Periksa" value="<?= tgl_balik($tanggal);?>">
 										<?php echo form_error('tgl_periksa'); ?>
 									</div>
 									<div class="input-group-icon mt-10">
@@ -152,6 +154,17 @@
 									</div>
 								</form>
 							</div>
+							<div class="col-md-6">
+								<h3 class="mb-30">Jadwal Dokter, <?= nama_hari($tanggal).' '.tgl_lengkap($tanggal);?></h3>
+								<table class="table table-responsive" id="mytable" >
+									<thead>
+										<tr>
+											<th style="width:200px">Nama Poli</th>
+											<th style="width:300px">Nama Dokter</th>
+										</tr>
+									</thead>									
+								</table>								
+							</div>
 						</div>
 					</div>					
 			</div>
@@ -166,69 +179,39 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js"></script>	
 <script src="<?php echo base_url(); ?>assets/lib/datepicker/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/lib/datepicker/locales/bootstrap-datepicker.id.js"></script>
+<!-- DATA TABES SCRIPT -->
+<script src="<?php echo base_url(); ?>assets/lib/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/lib/datatables/dataTables.bootstrap.js"></script>
 </body>
 </html>
 <script type="text/javascript">
-	$.validator.setDefaults( {
-		submitHandler: function () {
-			alert( "submitted!" );
-		}
-	} );
-
-	$( document ).ready( function () {
-		$("#registerForm").validate( {
-			rules: {					
-				no_telp: {
-					required: true,
-					maxlength: 13,
-					number: true
-				},					
-				datepicker: "required",
-				poliklinik:	"required",
-				tarif:	"required",
-				dokter:	"required",
-				cara_bayar: "required"
-			},
-			messages: {					
-				no_telp: {
-					required: "No Telp belum di isi",
-					number: "Format Input Number",
-					minlength: "Minimal number 11 angka"
-				},					
-				datepicker: "Tanggal Periksa belum di isi",
-				poliklinik: "Poliklinik belum di isi",
-				tarif: "Tarif Poli belum di isi",
-				dokter: "Dokter Poli belum di isi",
-				cara_bayar: "Jenis Pasien belum di isi",
-			},
-			errorElement: "em",
-			errorPlacement: function ( error, element ) {					
-				error.addClass( "help-block" );
-
-				if ( element.prop( "type" ) === "checkbox" ) {
-					error.insertAfter( element.parent( "label" ) );
-				} else {
-					error.insertAfter( element );
-				}
-			},
-			highlight: function ( element, errorClass, validClass ) {
-				$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
-			},
-			unhighlight: function (element, errorClass, validClass) {
-				$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-			}
-		} );
-	} );
-
-    var today= new Date();
-    var endday= today+7;
-    $("#datepicker").datepicker({
-        format : 'dd-mm-yyyy',
-        startDate: today,        
-        endDate: '+1d',        
-        //maxDate: today,
-        autoclose: true  
+	$(document).ready(function () {
+        $.fn.dataTable.ext.errMode = 'throw';
+        $('#mytable').dataTable({							
+			"bLengthChange": false,			
+			"ordering": false,
+			"info":     false,
+            "Processing": true,
+            "ServerSide": true,
+            "iDisplayLength":5,
+            "bDestroy": true,
+			"oLanguage": {
+				"sSearch": " ", 				
+        		'sSearchPlaceholder': 'Search ....'               
+            },       
+            "ajax": "<?php echo base_url('home/view_jadwal'); ?>",
+            "columns": [                               
+                {"mData": "nama_sub_unit"},
+                {"mData": "nama_pegawai"},
+            ]
+        });
     });
+
+	function jadwalDokter(){
+		$.ajax({
+
+		});
+	}
 
     function getHarga(){
         var poli = $("#poliklinik").val();

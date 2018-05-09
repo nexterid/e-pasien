@@ -111,6 +111,10 @@ function kode_tanggal() {
     return date('dmY');
 }
 
+function tgl_nilai($tanggal){
+    return date("N",strtotime($tanggal));
+}
+
 function tanggal_new() {
     /* script menentukan hari */
     $array_hr = array(1 => "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu");
@@ -159,7 +163,7 @@ function tgl_indotime($tgl) {
 }
 
 function tgl_lengkap($tanggals) {
-
+    //$hari=date('Y-m-d',$tanggals)
     $tanggal = substr($tanggals, 8, 2);
     $bulan = substr($tanggals, 5, 2);
     $tahun = substr($tanggals, 0, 4);

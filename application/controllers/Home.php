@@ -8,23 +8,80 @@ class Home extends CI_Controller {
 		date_default_timezone_set('Asia/Jakarta');
     }
 	
-	function index(){
-		if($this->session->userdata('status_login')=='login_diterima'){
-			$date=date('d-m-Y');
-			$date = strtotime($date);		
-			$data['tanggal']=strtotime("+1 day", $date);			
+	function index()
+	{
+		if($this->session->userdata('status_login')=='login_diterima'){				
+			$data['tanggal']=$this->tglPeriksa();			
 			$data['poliklinik'] = $this->rest_model->getalltarifkarcis();	
 			$data['cara_masuk'] = $this->rest_model->getallasalpasien();	
 			$data['instansi'] = $this->rest_model->getallinstansirujukan();
 			$data['penjamin'] = $this->rest_model->getallpenjaminpasien();
-			$data['cara_bayar']=$this->rest_model->getcarabayar();			
-			$this->load->view('home/index',$data);
+			$data['cara_bayar']=$this->rest_model->getcarabayar();
+			$data['jadwal']=$this->rest_model->getJadwalDokter($this->tglPeriksa());			
+			$this->load->view('home/index',$data);			
 		}else{
 			redirect('auth');
 		}
 		
 	}
+
+	public function view_jadwal() {        
+        $getdata = $this->rest_model->getJadwalDokter($this->tglPeriksa());        
+        foreach ($getdata->hasil as $q) {
+           // $kualitas = $this->db->get_where('kualitas', array('kd_kualitas' => $q->kd_kualitas))->row();            
+            $query[] = array(                
+                'nama_sub_unit'=>$q->nama_sub_unit,               
+                'nama_pegawai' => $q->nama_pegawai,               
+            );
+        }
+        $result = array('data' => $query);
+        echo json_encode($result);
+    }
+
 	
+
+	// function cek_tglPeriksa($tgl)
+	// {
+	// 	$cek_libur =$this->rest_model->getAllHariLibur();
+	// 	$libur= $cek_libur['hasil'];
+	// 	$from = new DateTime($tgl);
+	// 	foreach($libur as $h){
+	// 		$holidayDays[] = $h['tgl_libur'];
+	// 	}
+	// 	$days = 1;
+	// 	while ($days) {
+	// 		in_array($from->format('Y-m-d'), $holidayDays) ? $from->modify('+1 day') : date('N',strtotime($from->modify('+1 day')))==7?$from->modify('+1 day'):0 ;
+	// 	if (in_array($from->format('Y-m-d'), $holidayDays)) continue;
+	// 		$dates[] = $from->format('Y-m-d');
+	// 		$days--;
+	// 	}
+	// 	return array_shift($dates);
+	// }
+
+	function tglPeriksa()
+	{
+		$from=date('Y-m-d');	
+		$tgl_periksa=$this->cek_tglPeriksa($from);	
+		return $tgl_periksa;
+	}
+
+	// function coba($tgl){
+	// 	echo $this->tglPeriksa($tgl);
+	// }
+
+	function cek_tglPeriksa($from){
+		$cek_libur =$this->rest_model->getAllHariLibur();
+		$libur= $cek_libur['hasil'];
+		$q = [];
+		array_walk($libur, function($a) use (&$q) { $q[] = $a["tgl_libur"]; });
+		do {
+			$from = date("Y-m-d", strtotime($from)+86400);
+		} 
+		while(in_array($from, $q) || date("D", strtotime($from)) === "Sun");
+
+		return $from;
+	}
+
 	function simpan(){		
 		$this->_set_rules();
 		$tgl_periksa=tgl_db($this->input->post('tgl_periksa',true));
@@ -167,11 +224,7 @@ class Home extends CI_Controller {
 		}
 		
 	}
-
-	public function testing()
-	{
-		$this->load->view('home/testing');
-	}
+	
 
 	function _set_rules() {
         $this->form_validation->set_rules('no_telp', 'No Telpn/Hp', 'required|trim|numeric');
