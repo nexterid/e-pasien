@@ -24,18 +24,28 @@ class Home extends CI_Controller {
 		}
 		
 	}
+	function tgl($tgl){
+		echo tgl_db($tgl);
+	}
 
-	public function view_jadwal() {        
-        $getdata = $this->rest_model->getJadwalDokter($this->tglPeriksa());        
-        foreach ($getdata->hasil as $q) {
-           // $kualitas = $this->db->get_where('kualitas', array('kd_kualitas' => $q->kd_kualitas))->row();            
-            $query[] = array(                
-                'nama_sub_unit'=>$q->nama_sub_unit,               
-                'nama_pegawai' => $q->nama_pegawai,               
-            );
-        }
-        $result = array('data' => $query);
-        echo json_encode($result);
+	public function view_jadwal() { 
+		$tgl=tgl_db($this->input->get('tgl'));		
+		// var_dump($tgl);	 		
+		$getdata = $this->rest_model->getJadwalDokter($tgl); 
+		if($getdata->ok=="true"){
+			foreach ($getdata->hasil as $q) {
+				// $kualitas = $this->db->get_where('kualitas', array('kd_kualitas' => $q->kd_kualitas))->row();            
+				 $query[] = array(                
+					 'nama_sub_unit'=>$q->nama_sub_unit,               
+					 'nama_pegawai' => $q->nama_pegawai,               
+				 );
+			 }		
+			 $result = array('data' => $query);
+			 echo json_encode($result);
+		}else{
+			echo json_encode($getdata->pesan);
+		}       
+        
     }
 
 	

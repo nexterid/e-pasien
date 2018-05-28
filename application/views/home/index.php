@@ -156,13 +156,23 @@
 							</div>
 							<div class="col-md-6">
 								<h3 class="mb-30">Jadwal Dokter, <?= nama_hari($tanggal).' '.tgl_lengkap($tanggal);?></h3>
+								<div class="form-row">
+									<div class="col-5">
+										<input type="text" name="tgl_jadwal" id="tgl_jadwal" class="form-control" placeholder="Tanggal Jadwal dokter" value="<?= tgl_balik($tanggal);?>" >
+									</div>									
+									<div class="col-5">
+										<input type="search" class="form-control" placeholder="Pencarian poli / dokter" id="searchInput">
+									</div>
+								</div>  
 								<table class="table table-responsive" id="mytable" >
 									<thead>
 										<tr>
 											<th style="width:200px">Nama Poli</th>
 											<th style="width:300px">Nama Dokter</th>
 										</tr>
-									</thead>									
+									</thead>
+									<tdbody>
+									</tdbody>									
 								</table>								
 							</div>
 						</div>
@@ -186,9 +196,20 @@
 </html>
 <script type="text/javascript">
 	$(document).ready(function () {
+		jadwalDokter();
+    });	
+   
+	$('#tgl_jadwal').datepicker({autoclose: true })
+		.on('changeDate', function(e){
+		jadwalDokter();
+	});
+	
+	function jadwalDokter(){
+		var tgl = $("#tgl_jadwal").val();
         $.fn.dataTable.ext.errMode = 'throw';
         $('#mytable').dataTable({							
-			"bLengthChange": false,			
+			"bLengthChange": false,	
+			"sDom": "<t><'row'<p i>>",		
 			"ordering": false,
 			"info":     false,
             "Processing": true,
@@ -196,21 +217,27 @@
             "iDisplayLength":5,
             "bDestroy": true,
 			"oLanguage": {
-				"sSearch": " ", 				
-        		'sSearchPlaceholder': 'Search ....'               
-            },       
-            "ajax": "<?php echo base_url('home/view_jadwal'); ?>",
+				"sLengthMenu": "_MENU_ ",
+				"sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries",
+				"sZeroRecords": "Tidak ada jadwal dokter",
+                "sEmptyTable": "No data available in table"               
+			},			     
+            "ajax": {
+				"url": "<?php echo base_url('home/view_jadwal'); ?>",				
+				"type": "GET",
+                "data": {
+                    'tgl': tgl
+                }
+			},
             "columns": [                               
                 {"mData": "nama_sub_unit"},
                 {"mData": "nama_pegawai"},
             ]
-        });
-    });
-
-	function jadwalDokter(){
-		$.ajax({
-
 		});
+		oTable = $('#mytable').DataTable();  
+			$('#searchInput').keyup(function(){
+				oTable.search($(this).val()).draw() ;
+		});    
 	}
 
     function getHarga(){

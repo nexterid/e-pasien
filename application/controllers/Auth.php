@@ -28,7 +28,8 @@ class Auth extends CI_Controller {
                 'tgl_lahir'=>tgl_format(tgl_db($passwd)),
 			);
 			$cek =$this->rest_model->sendpasien($data);
-			//$cek=json_decode($login);			
+			//$cek=json_decode($login);	
+			// var_dump($cek);		
 			if($cek->ok==TRUE){
 				if($cek->hasil->jns_kel=='0'){
 					$jeniskel='Perempuan';
