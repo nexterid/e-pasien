@@ -21,6 +21,13 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/lib/datepicker/bootstrap-datetimepicker.min.css" >
 	<!-- DATA TABLES -->
 	<link href="<?php echo base_url(); ?>assets/lib/datatables/dataTables.bootstrap.css" rel="stylesheet">
+	<style>
+		p {
+			margin-top: 0;
+			margin-bottom: 1rem;
+			color: brown;
+		}
+	</style>
 	</head>
 	<body>
 		<div class="main-wrapper-first">
@@ -93,8 +100,10 @@
 					<div class="section-top-border">							
 						<div class="row">
 							<div class="col-md-6">
-								<h3 class="mb-30">Registrasi</h3>
+								<h3>Registrasi</h3>
+								<p>(Regitrasi Online hanya bisa dilakukan dari jam 08.00 s/d 14.00 WIB)</p>
 								<?php echo form_open('simpan','class="form"');?>
+								<?php echo "<p class='text-danger' >" . $this->session->flashdata('error_jam') . "</p>" ?>   
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
 										<input type="text" name="no_telp" id="no_telp" value="<?php echo $this->session->userdata('no_telp'); ?>"class="input-register" placeholder="No. Handphone" required oninvalid="setCustomValidity('No Telpone Harus di Isi !')" oninput="setCustomValidity('')">										
