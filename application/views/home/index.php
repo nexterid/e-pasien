@@ -156,11 +156,11 @@
 							</div>
 							<div class="col-md-6">
 								<h3 class="mb-30">Jadwal Dokter, <?= nama_hari($tanggal).' '.tgl_lengkap($tanggal);?></h3>
-								<div class="form-row">
+								<div class="form-group row">
 									<div class="col-5">
 										<input type="text" name="tgl_jadwal" id="tgl_jadwal" class="form-control" placeholder="Tanggal Jadwal dokter" value="<?= tgl_balik($tanggal);?>" >
 									</div>									
-									<div class="col-5">
+									<div class="col-6">
 										<input type="search" class="form-control" placeholder="Pencarian poli / dokter" id="searchInput">
 									</div>
 								</div>  
