@@ -46,8 +46,12 @@ class Home extends CI_Controller {
 			echo json_encode($getdata->pesan);
 		}       
         
-    }
-
+	}
+	
+	function test($kode){
+		$result=json_decode($this->curl->simple_get('http://192.168.0.229/referensi/diagnosa/'.$kode));
+        var_dump($result->response->diagnosa[0]->nama);
+	}
 	// function cek_tglPeriksa($tgl)
 	// {
 	// 	$cek_libur =$this->rest_model->getAllHariLibur();
