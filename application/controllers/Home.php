@@ -48,10 +48,6 @@ class Home extends CI_Controller {
         
 	}
 	
-	function test($kode){
-		$result=json_decode($this->curl->simple_get('http://192.168.0.229/referensi/diagnosa/'.$kode));
-        var_dump($result->response->diagnosa[0]->nama);
-	}
 	// function cek_tglPeriksa($tgl)
 	// {
 	// 	$cek_libur =$this->rest_model->getAllHariLibur();
@@ -164,7 +160,7 @@ class Home extends CI_Controller {
 			}
 		}else{	
 			$pesan='<div class="alert alert-danger alert-dismissible">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Maaf Jam Pendaftaran sudah di tutup !
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Maaf Pendaftaran Hanya Bisa dilakukan dari jam 08.00 s/d 14.00 !
 					</div>';		
 			$this->session->set_flashdata('error_jam',$pesan);
 			redirect('home');
