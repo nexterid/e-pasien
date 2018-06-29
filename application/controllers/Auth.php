@@ -25,7 +25,7 @@ class Auth extends CI_Controller {
 			$passwd=substr($password,0,2).'-'.substr($password,2,2).'-'.substr($password,4);			
 			$data = array(
                 'no_RM'=>  $this->input->post('username'),
-                'tgl_lahir'=>tgl_format(tgl_db($passwd)),
+                'tgl_lahir'=>tgl_db($passwd),
 			);
 			$cek =$this->rest_model->sendpasien($data);
 			//$cek=json_decode($login);	

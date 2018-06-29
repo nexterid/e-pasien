@@ -223,7 +223,10 @@
 			"info":     false,
             "Processing": true,
             "ServerSide": true,
-            "iDisplayLength":5,
+            // "iDisplayLength":5,
+			"scrollY": "200px",
+			"scrollCollapse": true,
+			"paging":         false,
             "bDestroy": true,
 			"oLanguage": {
 				"sLengthMenu": "_MENU_ ",
