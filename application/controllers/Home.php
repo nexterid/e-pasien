@@ -140,7 +140,8 @@ class Home extends CI_Controller {
 				);			
 				if($this->input->post('cara_bayar')==3){
 					$data['kd_penjamin']=$this->input->post('kd_penjamin',true);
-				}					
+				}	
+				// var_dump($data);				
 				$insert=$this->rest_model->action_daftar($data); 	
 				$respon=json_decode($insert);			
 				if($respon->ok==true){
