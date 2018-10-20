@@ -17,6 +17,18 @@
 	<link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
 	<link href="<?php echo base_url(); ?>assets/css/main.css" type="text/css" rel="stylesheet">
+	<style>
+		.table-wrapper-scroll-y {
+			display: block;
+			max-height: 260px;
+			overflow-y: auto;
+			-ms-overflow-style: -ms-autohiding-scrollbar;
+		}
+		thead {
+			background-color: #498175;
+			color: #fff;
+		}
+	</style>
 	</head>
 	<body>
 		<div class="main-wrapper-first">
@@ -102,32 +114,37 @@
 									</div>';
 								}            
 								?>							
-								<h3 class="mb-30">History</h3>								
-								<table class="table table-responsive"> 
-									<tr>
-										<td>No Registrasi</td>
-										<td style="width:200px">Tgl Registrasi</td>
-										<td>Waktu</td>
-										<td style="width:200px">Poliklinik</td>
-									</tr>                
-									<?php 
-										if($lisregister->ok==false){
-											echo '
-											<tr>												
-											</tr>';
-										}else{
-											foreach($lisregister->hasil as $q){
-												echo'
-												<tr>
-													<td>'.$q->no_reg.'</td>
-													<td>'.tgl_lengkap($q->tgl_reg).'</td>
-													<td>'.waktu_24($q->waktu).'</td>
-													<td>'.$q->nama_sub_unit.'</td>                            
+								<h3 class="mb-30">History</h3>
+								<div class="table-wrapper-scroll-y">								
+									<table class="table table-responsive"> 
+										<thead>
+											<tr>
+												<td>No Registrasi</td>
+												<td style="width:200px">Tgl Registrasi</td>
+												<td>Waktu</td>
+												<td style="width:200px">Poliklinik</td>
+											</tr>   
+										</thead>             
+										<?php 
+											if($lisregister->ok==false){
+												echo '
+												<tr>												
 												</tr>';
-											}										
-										}                
-									?>                
-								</table> 
+											}else{
+												foreach($lisregister->hasil as $q){
+													echo'
+													<tr>
+														<td>'.$q->no_reg.'</td>
+														<td>'.tgl_lengkap($q->tgl_reg).'</td>
+														<td>'.waktu_24($q->waktu).'</td>
+														<td>'.$q->nama_sub_unit.'</td>                            
+													</tr>';
+												}										
+											}                
+										?>                
+									</table> 
+								</div>
+								<br>
 								<a href="<?= site_url('home');?>" class="genric-btn btn-xs success circle">Back to home</a>    
 		
 							</div>

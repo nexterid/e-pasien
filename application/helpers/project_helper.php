@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 function chek_session() {
     $ci = & get_instance();
-    if ($ci->session->userdata('status_login') !== 'login_successful') {
+    if ($ci->session->userdata('status_login') !== TRUE) {
         redirect('auth');
     }
 }

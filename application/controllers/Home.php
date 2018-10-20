@@ -6,11 +6,12 @@ class Home extends CI_Controller {
     function __construct() {
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
+		chek_session();
     }
 	
 	function index()
 	{
-		if($this->session->userdata('status_login')=='login_diterima'){				
+		if($this->session->userdata('status_login')==TRUE){				
 			$data['tanggal']=$this->tglPeriksa();			
 			$data['poliklinik'] = $this->rest_model->getalltarifkarcis();	
 			$data['cara_masuk'] = $this->rest_model->getallasalpasien();	
@@ -24,10 +25,7 @@ class Home extends CI_Controller {
 		}
 		
 	}
-	function tgl($tgl){
-		echo tgl_db($tgl);
-	}
-
+	
 	public function view_jadwal() { 
 		$tgl=tgl_db($this->input->get('tgl'));		
 		// var_dump($tgl);	 		
@@ -88,7 +86,7 @@ class Home extends CI_Controller {
 
 	function simpan(){
 		$jamdaftar=date('H:i:s');
-		if($jamdaftar >= "08:00:00" && $jamdaftar < "14.00"){
+		if($jamdaftar >= "08:00:00" && $jamdaftar < "16.00"){
 			$this->_set_rules();
 			$tgl_periksa=tgl_db($this->input->post('tgl_periksa',true));
 			$cek_libur=$this->rest_model->getHariLibur($tgl_periksa); 	
@@ -123,7 +121,7 @@ class Home extends CI_Controller {
 					$no_bukti = $kode_tag . sprintf("%04s", $noUrut);		
 				}
 				$data=array(
-					'no_reg'=>$newID,
+					// 'no_reg'=>$newID,
 					'kd_sub_unit'=>$this->input->post('poliklinik',true),
 					'no_RM'=>$this->input->post('no_rm',true),
 					'tgl_reg'=>tgl_db($this->input->post('tgl_periksa',true)),
@@ -134,7 +132,7 @@ class Home extends CI_Controller {
 					'kd_cara_bayar'=>$this->input->post('cara_bayar',true),
 					'kd_asal_pasien'=>'1',
 					'kd_tarif'=>$get_tarif->hasil->kd_tarif,
-					'no_bukti'=>$no_bukti,
+					// 'no_bukti'=>$no_bukti,
 					'hak_kelas'=>'0',
 					'Rek_P'=>$get_tarif->hasil->Rek_P,
 				);			
@@ -238,8 +236,7 @@ class Home extends CI_Controller {
 			echo '';
 		}
 		
-	}
-	
+	}	
 
 	function _set_rules() {
         $this->form_validation->set_rules('no_telp', 'No Telpn/Hp', 'required|trim|numeric');

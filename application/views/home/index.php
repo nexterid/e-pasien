@@ -27,7 +27,8 @@
 			margin-bottom: 1rem;
 			color: brown;
 		}
-	</style>
+		
+	</style>	
 	</head>
 	<body>
 		<div class="main-wrapper-first">
@@ -180,8 +181,8 @@
 											<th style="width:300px">Nama Dokter</th>
 										</tr>
 									</thead>
-									<tdbody>
-									</tdbody>									
+									<tbody>
+									</tbody>									
 								</table>								
 							</div>
 						</div>
