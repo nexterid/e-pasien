@@ -86,7 +86,7 @@ class Home extends CI_Controller {
 
 	function simpan(){
 		$jamdaftar=date('H:i:s');
-		if($jamdaftar >= "08:00:00" && $jamdaftar < "16.00"){
+		if($jamdaftar >= "08:00:00" && $jamdaftar < "14.00"){
 			$this->_set_rules();
 			$tgl_periksa=tgl_db($this->input->post('tgl_periksa',true));
 			$cek_libur=$this->rest_model->getHariLibur($tgl_periksa); 	
