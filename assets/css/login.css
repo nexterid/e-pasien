@@ -281,6 +281,10 @@
   .login100-form {
     width: 290px;
   }
+
+  .login101-form {
+    width: 350px;
+  }
   
   .login100-form-title {
     font-family: Poppins-Bold;

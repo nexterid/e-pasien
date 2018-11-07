@@ -51,6 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'auth';
 $route['register'] = 'auth/registrasi';
+$route['create'] = 'auth/create_password';
+$route['created'] = 'auth/action_userpasien';
+$route['reset'] = 'auth/reset_password';
+$route['reseted'] = 'auth/action_resetpass';
+$route['generated'] = 'auth/action_generatepass';
 $route['simpan'] = 'home/simpan';
 $route['registered'] = 'home/registered';
 $route['404_override'] = '';

@@ -23,16 +23,16 @@ $(document).ready(function(){
     });
      
    
-    $('.img-pop-up').magnificPopup({
-        type: 'image',
-        gallery:{
-        enabled:true
-        }
-    });
+    // $('.img-pop-up').magnificPopup({
+    //     type: 'image',
+    //     gallery:{
+    //     enabled:true
+    //     }
+    // });
 
     // -------   Signup Form-----//
-    $(document).ready(function() {
-        $('#mc_embed_signup').find('form').ajaxChimp();
-    });      
+    // $(document).ready(function() {
+    //     $('#mc_embed_signup').find('form').ajaxChimp();
+    // });      
 
  });

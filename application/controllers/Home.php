@@ -151,7 +151,8 @@ class Home extends CI_Controller {
 					redirect('registered');				
 				}else {	
 					$getPoli=$this->rest_model->getNamaPoli($this->input->post('poliklinik',true));				
-					$pesan=$respon->pesan.' untuk tanggal '.$this->input->post('tgl_periksa',true).'<br>Pendaftaran Pada Poli : '.$respon->nama_poli;
+					// $pesan=$respon->pesan.' untuk tanggal '.$this->input->post('tgl_periksa',true).'<br>Pendaftaran Pada Poli : '.$respon->nama_poli;
+					$pesan = $respon->pesan;
 					$this->session->set_flashdata('error',$pesan);
 					// var_dump($respon);
 					redirect('registered');	

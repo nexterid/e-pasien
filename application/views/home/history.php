@@ -74,6 +74,11 @@
 										<td style='vertical-align:top'>:</td>
 										<td><?php echo $this->session->userdata('alamat'); ?></td>
 									</tr>
+									<tr>
+										<td style='vertical-align:top'>Email</td>
+										<td style='vertical-align:top'>:</td>
+										<td><?php echo $this->session->userdata('email'); ?></td>
+									</tr>
 								</table>
 							</div>
 							<div class="col-md-6">

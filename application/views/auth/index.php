@@ -20,27 +20,33 @@
         <div class="container-login100">
             <div class="wrap-login100">            
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="<?php echo base_url(); ?>assets/images/logo-kab.png">
-                    <h2 class="text-center">RSUD KRATON</h2><br>
-                    <h2 class="text-center">Kab. Pekalongan</h2>
+                    <img src="<?php echo base_url(); ?>assets/images/rsudkraton.png">
+                    <h4 class="text-center">RSUD KRATON</h4><br>
+                    <h4 class="text-center">Kab. Pekalongan</h4>
                 </div>
                 
                 <form class="login100-form" action="<?php echo site_url('register');?>" method="post">
                 <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>                    
                     <span class="login100-form-title">
-                        <img src="<?php echo base_url(); ?>assets/images/logo-kraton.png" alt="IMG">                        
+                        <img src="<?php echo base_url(); ?>assets/images/logo-kab.png" alt="IMG">                        
                     </span>
                     <?php 
-                    if (validation_errors() || $this->session->flashdata('error')){ 
-                        ?>
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden='true'>&times;</button>                       
-                            <?php echo validation_errors(); ?>
-                            <?php echo $this->session->flashdata('error'); ?>
-                        </div>    
-                    <?php } ?>
+                        if (validation_errors() || $this->session->flashdata('error')){ 
+                            echo'
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                       
+                                    '.validation_errors().' '.$this->session->flashdata("error").'
+                                </div> ';   
+                        }else if($this->session->flashdata('success')){
+                            echo'
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                       
+                                    '.$this->session->flashdata("success").'
+                                </div> ';  
+                        }
+                    ?>
                     <div class="wrap-input100 validate-input" data-validate = "No RM is required: 111111">
-                        <input autocomplete="off" id="username" type="number" maxlength ="10" class="input100" name="username" value="" placeholder="User ID" required oninvalid="this.setCustomValidity('Silahkan isi User ID anda!')" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                        <input autocomplete="off" id="username" type="text" class="input100" name="username" value="" placeholder="Email / No. RM" required oninvalid="this.setCustomValidity('Silahkan isi User ID anda!')" oninput="this.setCustomValidity('')">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa  fa-user" aria-hidden="true"></i>
@@ -56,12 +62,20 @@
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn" onclick="return requiredCheckLogin(this);" >
                             Login
-                        </button>
-                    </div>                    
+                        </button>                        
+                    </div>   
+                    <div class="text-center p-t-12">
+                        <span class="txt0">
+                            <strong class="txtbadag"><a href="<?php echo site_url('reset');?>" class="txt0">Lupa Password  <i class="fa fa-user" aria-hidden="true"></i></a></strong> |
+                        </span>
+                        <span class="txt0">
+                            <strong class="txtbadag"> <a href="<?php echo site_url('create');?>" class="txt0">Buat Password <i class="fa fa-lock" aria-hidden="true"></i></a></strong>
+                        </span>                           
+                    </div>            
                     <div class="text-center txt0 p-t-100">                        
                             Powered By :
                             <a class="txt0 m-l-5" href="#">RSUD KRATON</a>                            
-                        </a>
+                        
                     </div>
                 </form>
             </div>            

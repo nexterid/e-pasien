@@ -1998,6 +1998,29 @@ body {
   }
 }
 
+.main-wrapper2 {
+  width: 40%;
+  margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .main-wrapper2 {
+    width: 45%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .main-wrapper2 {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-wrapper2 {
+    width: 55%;
+  }
+}
+
 .section-gap {
   padding: 120px 0;
 }
