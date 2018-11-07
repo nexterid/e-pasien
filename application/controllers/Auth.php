@@ -52,6 +52,7 @@ class Auth extends CI_Controller {
 	}
 
 	function action_resetpass(){
+		$this->session->sess_destroy();
 		$this->_reset_rules();
 		if ($this->form_validation->run() == FALSE) {						
 			$this->reset_password();   
@@ -63,6 +64,7 @@ class Auth extends CI_Controller {
 			);
 			$resetpasswd =$this->rest_model->praResetPassword($dataposting);
 			if($resetpasswd->ok ==true){
+				$this->session->set_flashdata('success',$resetpasswd->hasil);
 				$data['display']='show';
 				$data['action']=site_url('generated');
 				$this->load->view('auth/reset_password',$data);
@@ -77,10 +79,12 @@ class Auth extends CI_Controller {
 
 	function action_generatepass(){
 		$this->_reset_rules();
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 		$this->form_validation->set_rules('confirm_password', 'Konfirmasi Password', 'required|matches[password]');
 		if ($this->form_validation->run() == FALSE) {						
-			$this->reset_password();   
+			$data['display']='show';
+			$data['action']=site_url('generated');
+			$this->load->view('auth/reset_password',$data);  
         } else {
 			$dataposting = array(
 				'no_ktp'=> $this->input->post('no_ktp',true),		
@@ -154,7 +158,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('no_ktp', 'No. KTP / NIK ', 'trim|required');
 		$this->form_validation->set_rules('no_rm', 'No RM (Rekam Medis)', 'trim|required');     
 		$this->form_validation->set_rules('email', 'Alamat Email', 'trim|required|valid_email');  
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 		$this->form_validation->set_rules('confirm_password', 'Konfirmasi Password', 'required|matches[password]');      
 	}
 	

@@ -25,17 +25,22 @@
                     <h4 class="text-center">Kab. Pekalongan</h4>
                 </div> 
                 <form class="login101-form" action="<?=$action;?>" method="post">
-                    <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?> 
-                    
+                    <?php echo form_hidden($this->security->get_csrf_token_name(), $this->security->get_csrf_hash()); ?>                     
                     <?php 
-                    if (validation_errors() || $this->session->flashdata('error')){ 
-                        ?>
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden='true'>&times;</button>                       
-                            <?php echo validation_errors(); ?>
-                            <?php echo $this->session->flashdata('error'); ?>
-                        </div>    
-                    <?php } ?>
+                        if (validation_errors() || $this->session->flashdata('error')){ 
+                            echo'
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                       
+                                    '.validation_errors().' '.$this->session->flashdata("error").'
+                                </div> ';   
+                        }else if($this->session->flashdata('success')){
+                            echo'
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                       
+                                    '.$this->session->flashdata("success").'
+                                </div> ';  
+                        }
+                    ?>
                     <div class="wrap-input100 validate-input" data-validate = "No. KTP">
                         <input type="number" maxlength ="17" class="input100" name="no_ktp" value="<?php echo set_value('no_ktp'); ?>" placeholder="No. KTP /NIK" required oninvalid="this.setCustomValidity('Silahkan isi dengan No. KTP!')" oninput="this.setCustomValidity('');">
                         <span class="focus-input100"></span>
