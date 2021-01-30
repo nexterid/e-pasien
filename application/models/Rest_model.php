@@ -12,31 +12,31 @@ class Rest_model extends CI_Model {
 
     public function sendpasien($data)
     {
-        $result=json_decode($this->curl->simple_post($this->API.'/sendpasien',$data));
+        $result=json_decode($this->curl->simple_post($this->API.'/sendpasien',$data,array(CURLOPT_BUFFERSIZE => 10)));
         return $result;
     }
 
     public function loginpasien($data)
     {
-        $result=json_decode($this->curl->simple_post($this->API.'/loginpasien',$data));
+        $result=json_decode($this->curl->simple_post($this->API.'/loginpasien',$data,array(CURLOPT_BUFFERSIZE => 10)));
         return $result;
     }
 
     public function reguserpasien($data)
     {
-        $result=json_decode($this->curl->simple_post($this->API.'/reguserpasien',$data));
+        $result=json_decode($this->curl->simple_post($this->API.'/reguserpasien',$data,array(CURLOPT_BUFFERSIZE => 10)));
         return $result;
     }
 
     public function praResetPassword($data)
     {
-        $result=json_decode($this->curl->simple_post($this->API.'/pasien/reset/password',$data));
+        $result=json_decode($this->curl->simple_post($this->API.'/pasien/reset/password',$data,array(CURLOPT_BUFFERSIZE => 10)));
         return $result;
     }
 
     public function ResetNewPassword($data)
     {
-        $result=json_decode($this->curl->simple_post($this->API.'/pasien/generate/password',$data));
+        $result=json_decode($this->curl->simple_post($this->API.'/pasien/generate/password',$data,array(CURLOPT_BUFFERSIZE => 10)));
         return $result;
     }
     
@@ -96,7 +96,7 @@ class Rest_model extends CI_Model {
 
     public function action_daftar($data)
     {
-        $result=$this->curl->simple_post($this->API.'/sendregister', $data);
+        $result=$this->curl->simple_post($this->API.'/sendregister', $data,array(CURLOPT_BUFFERSIZE => 10));
         return $result;
     }
 
